@@ -1,0 +1,68 @@
+<mat-card>
+    <b>Manage User</b>
+    <!-- <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">Add Product</button> -->
+</mat-card>
+<hr>
+<mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table ">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Category Name  Column -->
+        <ng-container matColumnDef="contactNumber">
+            <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.contactNumber}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <mat-slide-toggle [(ngModel)]="element.status" (change)="handleChangeAction($event.checked,element.id)"
+                matTooltip="Activate or Deactivate Product"></mat-slide-toggle>
+<!--                 
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleChangeAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button> -->
+             </td>
+        </ng-container>
+
+   
+
+        <!-- Edit Column -->
+        <!-- <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleChangeAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" matTooltip="Edit" (click)="handleDeleteAction(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <mat-slide-toggle (change)="onChange($event.checked,element.id)"
+                    matTooltip="Activate or Deactivate Product" [checked]="element.ststus"></mat-slide-toggle>
+            </td>
+        </ng-container> -->
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
